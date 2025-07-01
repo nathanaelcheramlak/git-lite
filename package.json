@@ -1,0 +1,15 @@
+{
+  "name": "git-lite",
+  "module": "index.ts",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "crypto": "^1.0.1"
+  }
+}

@@ -1,4 +1,5 @@
 import type ParsedArgsType from "../types/arg-parser.type";
+import { isHash } from "./hash";
 
 export default function parseArgs(args: string[]): ParsedArgsType {
   const result: ParsedArgsType = {
@@ -6,7 +7,6 @@ export default function parseArgs(args: string[]): ParsedArgsType {
     options: {},
     hash: [],
     positionals: [],
-    str: [],
   };
 
   for (let arg of args) {
@@ -34,11 +34,6 @@ export default function parseArgs(args: string[]): ParsedArgsType {
       result.hash.push(arg);
     }
 
-    // Check if string is wrapped in quotes
-    else if (/^["'].*["']$/.test(arg)) {
-      result.str.push(arg);
-    }
-
     // Otherwise positional
     else {
       result.positionals.push(arg);
@@ -46,10 +41,6 @@ export default function parseArgs(args: string[]): ParsedArgsType {
   }
 
   return result;
-}
-
-function isHash(value: string): boolean {
-  return /^[a-f0-9]{40}$/i.test(value);
 }
 
 function stripQuotes(str: string): string {

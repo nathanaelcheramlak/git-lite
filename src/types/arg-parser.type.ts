@@ -3,5 +3,4 @@ export default interface ParsedArgsType {
   options: Record<string, string | boolean>;
   hash: string[];
   positionals: string[];
-  str: string[];
 }

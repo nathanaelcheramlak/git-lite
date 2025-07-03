@@ -6,12 +6,12 @@ import manualCatFile from "../manuals/cat-file.manual";
 import type ParsedArgsType from "../types/arg-parser.type";
 
 export default function handleCatFile(args: ParsedArgsType): void {
-  if (args.hash.length === 0 || args.hash[0] === undefined) {
+  const hash = args.hash[0];
+  if (hash === undefined) {
     manualCatFile();
     return;
   }
 
-  const hash = args.hash[0];
   const objectPath = path.join(
     getRootDir(),
     ".git-lite",

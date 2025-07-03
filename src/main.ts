@@ -1,6 +1,8 @@
 import handleCatFile from "./commands/cat-file";
 import handleHashObject from "./commands/hash-object";
 import handleInit from "./commands/init";
+import handleLsTree from "./commands/ls-tree";
+import handleWriteTree from "./commands/write-tree";
 
 const args = process.argv.slice(2);
 const command = args[0];
@@ -19,17 +21,15 @@ switch (command) {
     break;
 
   case "hash-object":
-    let filePath: string;
-    let saveFile = false;
+    console.log(handleHashObject(args.slice(1)));
+    break;
 
-    if (args[1] === "-w") {
-      filePath = args[2] as string;
-      saveFile = true;
-    } else {
-      filePath = args[1] as string;
-    }
+  case "ls-tree":
+    handleLsTree(args.slice(1));
+    break;
 
-    handleHashObject(filePath, saveFile);
+  case "write-tree":
+    handleWriteTree();
     break;
 
   default:

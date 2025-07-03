@@ -1,9 +1,16 @@
 import * as fs from "fs";
 import { inflateSync } from "zlib";
+import getRootDir from "../utils/get-root-dir";
 
 export default function handleCatFile(flag: string, objectHash: string): void {
   const objectPath =
-    ".git-lite/objects/" + objectHash.slice(0, 2) + "/" + objectHash.slice(2);
+    getRootDir(process.cwd()) +
+    "/.git-lite/objects/" +
+    objectHash.slice(0, 2) +
+    "/" +
+    objectHash.slice(2);
+  console.log(objectPath);
+
   switch (flag) {
     case "-p":
       if (!fs.existsSync(objectPath)) {

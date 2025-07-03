@@ -1,13 +1,7 @@
-interface ParsedArgs {
-  flags: Record<string, boolean>;
-  options: Record<string, string | boolean>;
-  hash: string[];
-  positionals: string[];
-  str: string[];
-}
+import type ParsedArgsType from "../types/arg-parser.type";
 
-export default function parseArgs(args: string[]): ParsedArgs {
-  const result: ParsedArgs = {
+export default function parseArgs(args: string[]): ParsedArgsType {
+  const result: ParsedArgsType = {
     flags: {},
     options: {},
     hash: [],

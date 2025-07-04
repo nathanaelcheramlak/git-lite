@@ -12,18 +12,18 @@ export default function handleCatFile(args: ParsedArgsType): void {
     return;
   }
 
-  const objectPath = path.join(
-    getRootDir(),
-    ".git-lite",
-    "objects",
-    hash.slice(0, 2),
-    hash.slice(2)
-  );
-
-  let data;
-  let fileHeader;
+  let data: string;
+  let fileHeader: string;
 
   try {
+    const objectPath = path.join(
+      getRootDir(),
+      ".git-lite",
+      "objects",
+      hash.slice(0, 2),
+      hash.slice(2)
+    );
+
     if (!fs.existsSync(objectPath)) {
       console.error("git-lite: hash doesn't exist");
       process.exit(1);

@@ -59,7 +59,14 @@ export default function handleLsTree(args: ParsedArgsType): void {
     }
 
     console.log(onlyName.sort().join("\n"));
-  } else {
+  } else if (args.flags.a) {
     console.log(decompressed.toString());
+  } else {
+    const content = decompressed.toString().split("\u0000").slice(1);
+    for (const index of content.keys()) {
+      if (index % 2 == 0) {
+        console.log(content[index], content[index + 1]);
+      }
+    }
   }
 }

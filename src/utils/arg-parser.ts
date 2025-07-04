@@ -9,7 +9,7 @@ export default function parseArgs(args: string[]): ParsedArgsType {
     positionals: [],
   };
 
-  for (let arg of args) {
+  for (let [key, arg] of args.entries()) {
     // Handle --key=value
     if (arg.startsWith("--") && arg.includes("=")) {
       const [key, value] = arg.slice(2).split("=");
@@ -25,7 +25,8 @@ export default function parseArgs(args: string[]): ParsedArgsType {
     // Handle combined flags like -am
     else if (arg.startsWith("-")) {
       for (const char of arg.slice(1)) {
-        result.flags[char] = true;
+        if (char === "m") result.flags[char] = args[key + 1] ?? "";
+        else result.flags[char] = true;
       }
     }
 
